@@ -198,4 +198,12 @@ define Device/zyxel_nsa325
 endef
 TARGET_DEVICES += zyxel_nsa325
 
+define Device/butong_butongwifi
+  DEVICE_VENDOR := LCE
+  DEVICE_MODEL := butongwifi2021
+  DEVICE_PACKAGES := kmod-ata-marvell-sata kmod-fs-ext4 kmod-switch-mvsw61xx kmod-ata-core kmod-mmc kmod-mvsdio kmod-usb2
+  SUPPORTED_DEVICES += butongwifi
+endef
+TARGET_DEVICES += butong_butongwifi
+
 $(eval $(call BuildImage))
