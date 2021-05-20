@@ -48,6 +48,18 @@ jobs:
         run: |
           ./scripts/feeds update -a
           ./scripts/feeds install -a
+
+      - name: diy
+        run: |
+          # Modify default IP
+          sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+          # Modify hostname
+          sed -i 's/OpenWrt/BUTONGWIFI/g' package/base-files/files/bin/config_generate
+          # Modify the version number
+          sed -i "s/OpenWrt /BUTONGWIFI build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/lean/default-settings/files/zzz-default-settings
+          # Modify default theme
+          sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
+
       - name: Costom configure file
         run: |
           rm -f ./.config*
@@ -191,6 +203,14 @@ jobs:
           # ========================固件定制部分结束========================
           # 
           sed -i 's/^[ \t]*//g' ./.config
+          # Add kernel build user
+          [ -z $(grep "CONFIG_KERNEL_BUILD_USER=" .config) ] &&
+              echo 'CONFIG_KERNEL_BUILD_USER="P3TERX"' >>.config ||
+              sed -i 's@\(CONFIG_KERNEL_BUILD_USER=\).*@\1$"P3TERX"@' .config
+          # Add kernel build domain
+          [ -z $(grep "CONFIG_KERNEL_BUILD_DOMAIN=" .config) ] &&
+              echo 'CONFIG_KERNEL_BUILD_DOMAIN="GitHub Actions"' >>.config ||
+              sed -i 's@\(CONFIG_KERNEL_BUILD_DOMAIN=\).*@\1$"GitHub Actions"@' .config
           make defconfig
 
       - name: SSH connection to Actions
