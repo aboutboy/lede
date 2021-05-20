@@ -9,9 +9,17 @@
 #
 name: OpenWrt-CI
 on:
-  push:
-    branches: 
-      - master
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
+  
+  #push:
+  #  branches: 
+  #    - master
   # schedule:
   #   - cron: 0 20 * * *
   # release:
@@ -73,106 +81,140 @@ jobs:
           # 无论你想要对固件进行怎样的定制, 都需要且只需要修改 EOF 回环内的内容.
           # 
           # 编译x64固件:
-          # cat >> .config <<EOF
-          # CONFIG_TARGET_x86=y
-          # CONFIG_TARGET_x86_64=y
-          # CONFIG_TARGET_x86_64_Generic=y
-          # EOF
-          # 固件压缩:
-          # cat >> .config <<EOF
-          # CONFIG_TARGET_IMAGES_GZIP=y
-          # EOF
-          # 编译UEFI固件:
-          # cat >> .config <<EOF
-          # CONFIG_EFI_IMAGES=y
-          # EOF
-          # IPv6支持:
-          # cat >> .config <<EOF
-          # CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-          # CONFIG_PACKAGE_ipv6helper=y
-          # EOF
-          # 多文件系统支持:
-          # cat >> .config <<EOF
-          # CONFIG_PACKAGE_kmod-fs-nfs=y
-          # CONFIG_PACKAGE_kmod-fs-nfs-common=y
-          # CONFIG_PACKAGE_kmod-fs-nfs-v3=y
-          # CONFIG_PACKAGE_kmod-fs-nfs-v4=y
-          # CONFIG_PACKAGE_kmod-fs-ntfs=y
-          # CONFIG_PACKAGE_kmod-fs-squashfs=y
-          # EOF
-          # USB3.0支持:
-          # cat >> .config <<EOF
-          # CONFIG_PACKAGE_kmod-usb-ohci=y
-          # CONFIG_PACKAGE_kmod-usb-ohci-pci=y
-          # CONFIG_PACKAGE_kmod-usb2=y
-          # CONFIG_PACKAGE_kmod-usb2-pci=y
-          # CONFIG_PACKAGE_kmod-usb3=y
-          # EOF
-          # 常用LuCI插件选择:
-          # cat >> .config <<EOF
-          # CONFIG_PACKAGE_luci-app-adbyby-plus=y
-          # CONFIG_PACKAGE_luci-app-aria2=y
-          # CONFIG_PACKAGE_luci-app-baidupcs-web=y
-          # CONFIG_PACKAGE_luci-app-docker=y
-          # CONFIG_PACKAGE_luci-app-frpc=y
-          # CONFIG_PACKAGE_luci-app-hd-idle=y
-          # CONFIG_PACKAGE_luci-app-kodexplorer=y
-          # CONFIG_PACKAGE_luci-app-minidlna=y
-          # CONFIG_PACKAGE_luci-app-openvpn=y
-          # CONFIG_PACKAGE_luci-app-openvpn-server=y
-          # CONFIG_PACKAGE_luci-app-qbittorrent=y
-          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
-          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
-          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
-          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
-          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
-          # CONFIG_PACKAGE_luci-app-ttyd=y
-          # CONFIG_PACKAGE_luci-app-v2ray-server=y
-          # CONFIG_PACKAGE_luci-app-verysync=y
-          # CONFIG_PACKAGE_luci-app-webadmin=y
-          # CONFIG_PACKAGE_luci-app-wireguard=y
-          # CONFIG_PACKAGE_luci-app-wrtbwmon=y
-          # EOF
-          # LuCI主题:
-          # cat >> .config <<EOF
-          # CONFIG_PACKAGE_luci-theme-argon=y
-          # CONFIG_PACKAGE_luci-theme-netgear=y
-          # EOF
-          # 常用软件包:
-          # cat >> .config <<EOF
-          # CONFIG_PACKAGE_curl=y
-          # CONFIG_PACKAGE_htop=y
-          # CONFIG_PACKAGE_nano=y
-          # CONFIG_PACKAGE_screen=y
-          # CONFIG_PACKAGE_tree=y
-          # CONFIG_PACKAGE_vim-fuller=y
-          # CONFIG_PACKAGE_wget=y
-          # EOF
-          # 取消编译VMware镜像以及镜像填充 (不要删除被缩进的注释符号):
-          # cat >> .config <<EOF
-          # # CONFIG_TARGET_IMAGES_PAD is not set
-          # # CONFIG_VMDK_IMAGES is not set
-          # EOF
+          cat >> .config <<EOF
+          CONFIG_TARGET_kirkwood=y
+          CONFIG_TARGET_kirkwood_DEVICE_butong_butongwifi=y
+          CONFIG_TARGET_BOARD="kirkwood"
+          CONFIG_ATH_USER_REGD=y
+          CONFIG_DRIVER_11N_SUPPORT=y
+          CONFIG_LUCI_LANG_zh_Hans=y
+          CONFIG_PACKAGE_ATH_DFS=y
+          CONFIG_PACKAGE_MAC80211_DEBUGFS=y
+          CONFIG_PACKAGE_MAC80211_MESH=y
+          CONFIG_PACKAGE_badblocks=y
+          CONFIG_PACKAGE_block-mount=y
+          CONFIG_PACKAGE_cgi-io=y
+          # CONFIG_PACKAGE_dnsmasq is not set
+          CONFIG_PACKAGE_dnsmasq-full=y
+          CONFIG_PACKAGE_dnsmasq_full_auth=y
+          CONFIG_PACKAGE_dnsmasq_full_conntrack=y
+          CONFIG_PACKAGE_dnsmasq_full_dhcp=y
+          CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+          CONFIG_PACKAGE_dnsmasq_full_dnssec=y
+          CONFIG_PACKAGE_dnsmasq_full_ipset=y
+          CONFIG_PACKAGE_dnsmasq_full_noid=y
+          CONFIG_PACKAGE_dnsmasq_full_tftp=y
+          CONFIG_PACKAGE_e2fsprogs=y
+          CONFIG_PACKAGE_fdisk=y
+          CONFIG_PACKAGE_hostapd=y
+          CONFIG_PACKAGE_hostapd-common=y
+          CONFIG_PACKAGE_htop=y
+          CONFIG_PACKAGE_iw=y
+          CONFIG_PACKAGE_kmod-ata-ahci=y
+          CONFIG_PACKAGE_kmod-ath=y
+          CONFIG_PACKAGE_kmod-ath9k=y
+          CONFIG_PACKAGE_kmod-ath9k-common=y
+          CONFIG_PACKAGE_kmod-cfg80211=y
+          CONFIG_PACKAGE_kmod-fs-exfat=y
+          CONFIG_PACKAGE_kmod-fs-msdos=y
+          CONFIG_PACKAGE_kmod-fs-ntfs=y
+          CONFIG_PACKAGE_kmod-fs-reiserfs=y
+          CONFIG_PACKAGE_kmod-fs-vfat=y
+          CONFIG_PACKAGE_kmod-ipt-ipset=y
+          CONFIG_PACKAGE_kmod-mac80211=y
+          CONFIG_PACKAGE_kmod-mii=y
+          CONFIG_PACKAGE_kmod-nf-conntrack-netlink=y
+          CONFIG_PACKAGE_kmod-nfnetlink=y
+          CONFIG_PACKAGE_kmod-nls-cp437=y
+          CONFIG_PACKAGE_kmod-nls-cp936=y
+          CONFIG_PACKAGE_kmod-nls-iso8859-1=y
+          CONFIG_PACKAGE_kmod-nls-utf8=y
+          CONFIG_PACKAGE_kmod-usb-dwc2=y
+          CONFIG_PACKAGE_kmod-usb-net=y
+          CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
+          CONFIG_PACKAGE_kmod-usb-net-rndis=y
+          CONFIG_PACKAGE_kmod-usb-ohci=y
+          CONFIG_PACKAGE_kmod-usb-roles=y
+          CONFIG_PACKAGE_kmod-usb-storage=y
+          CONFIG_PACKAGE_kmod-usb-storage-extras=y
+          CONFIG_PACKAGE_kmod-usb-uhci=y
+          CONFIG_PACKAGE_libblkid=y
+          CONFIG_PACKAGE_libcomerr=y
+          CONFIG_PACKAGE_libext2fs=y
+          CONFIG_PACKAGE_libfdisk=y
+          CONFIG_PACKAGE_libgmp=y
+          CONFIG_PACKAGE_libiwinfo=y
+          CONFIG_PACKAGE_libiwinfo-lua=y
+          CONFIG_PACKAGE_liblua=y
+          CONFIG_PACKAGE_liblucihttp=y
+          CONFIG_PACKAGE_liblucihttp-lua=y
+          CONFIG_PACKAGE_libmnl=y
+          CONFIG_PACKAGE_libncurses=y
+          CONFIG_PACKAGE_libnetfilter-conntrack=y
+          CONFIG_PACKAGE_libnettle=y
+          CONFIG_PACKAGE_libnfnetlink=y
+          CONFIG_PACKAGE_librt=y
+          CONFIG_PACKAGE_libsmartcols=y
+          CONFIG_PACKAGE_libss=y
+          CONFIG_PACKAGE_libubus-lua=y
+          CONFIG_PACKAGE_libuuid=y
+          CONFIG_PACKAGE_lua=y
+          CONFIG_PACKAGE_luci=y
+          CONFIG_PACKAGE_luci-app-firewall=y
+          CONFIG_PACKAGE_luci-app-opkg=y
+          CONFIG_PACKAGE_luci-base=y
+          CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
+          CONFIG_PACKAGE_luci-i18n-firewall-zh-cn=y
+          CONFIG_PACKAGE_luci-i18n-opkg-zh-cn=y
+          CONFIG_PACKAGE_luci-lib-base=y
+          CONFIG_PACKAGE_luci-lib-ip=y
+          CONFIG_PACKAGE_luci-lib-jsonc=y
+          CONFIG_PACKAGE_luci-lib-nixio=y
+          CONFIG_PACKAGE_luci-mod-admin-full=y
+          CONFIG_PACKAGE_luci-mod-network=y
+          CONFIG_PACKAGE_luci-mod-status=y
+          CONFIG_PACKAGE_luci-mod-system=y
+          CONFIG_PACKAGE_luci-proto-ipv6=y
+          CONFIG_PACKAGE_luci-proto-ppp=y
+          CONFIG_PACKAGE_luci-theme-bootstrap=y
+          CONFIG_PACKAGE_rpcd=y
+          CONFIG_PACKAGE_rpcd-mod-file=y
+          CONFIG_PACKAGE_rpcd-mod-iwinfo=y
+          CONFIG_PACKAGE_rpcd-mod-luci=y
+          CONFIG_PACKAGE_rpcd-mod-rrdns=y
+          CONFIG_PACKAGE_terminfo=y
+          CONFIG_PACKAGE_uhttpd=y
+          CONFIG_PACKAGE_uhttpd-mod-ubus=y
+          CONFIG_PACKAGE_wireless-regdb=y
+          EOF
           # 
           # ========================固件定制部分结束========================
           # 
           sed -i 's/^[ \t]*//g' ./.config
           make defconfig
+
+      - name: SSH connection to Actions
+        uses: P3TERX/ssh2actions@main
+        if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+        
       - name: Make download
         run: |
           make download -j8
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
+
       - name: Compile firmware
         run: |
           echo -e "$(nproc) thread build."
           make -j$(nproc) V=s
+
       - name: Assemble artifact
         run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
-          find ./bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
-          find ./bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./artifact/
+          find ./bin/targets/ -name "*uImage*" | xargs -i mv -f {} ./artifact/
+          find ./bin/targets/ -name "*factory.bin*" | xargs -i mv -f {} ./artifact/
+  
       - name: Upload artifact
         uses: actions/upload-artifact@master
         with:
