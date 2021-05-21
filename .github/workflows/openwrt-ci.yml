@@ -78,7 +78,7 @@ jobs:
           # Modify root password
           sed -i '1c\root:$1$kGltZCp9$Z30nplSDeCToui/Cfgj2t0:0:0:99999:7:::' package/base-files/files/etc/shadow
           # Modify profile
-          sed -i '14c\export PS1=\'[\[\e[31;1m\]\u\[\e[m\]@\[\e[36;1m\]\h \[\e[35;1m\]\w\[\e[m\]]\$ \'' package/base-files/files/etc/profile
+          # sed -i '14c\export PS1=\'[\\[\\e[31;1m\\]\\u\[\\e[m\\]@\\[\\e[36;1m\\]\\h \\[\\e[35;1m\\]\\w\\[\\e[m\\]]\\$ \'' package/base-files/files/etc/profile
           # Modify default theme
           sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
