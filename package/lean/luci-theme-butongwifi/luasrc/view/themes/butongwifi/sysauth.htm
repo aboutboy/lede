@@ -1,0 +1,81 @@
+<%#
+不同生活(a@lce.cc)
+-%>
+
+<%
+	local sys  = require "luci.sys"
+	local util = require "luci.util"
+	local http = require "luci.http"
+	local disp = require "luci.dispatcher"
+
+	local boardinfo = util.ubus("system", "board")
+-%>
+
+<html lang="<%=luci.i18n.context.lang%>">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title><%=striptags( (boardinfo.hostname or "?") .. ( (node and node.title) and ' - ' .. translate(node.title) or '')) %> - LuCI</title>
+  <!--[if lt IE 9]><script src="<%=media%>/js/html5.js"></script><![endif]-->
+  <script src="<%=media%>/js/prefixfree.min.js" type="text/javascript" ></script>
+  <link rel="stylesheet" href="<%=media%>/css/loginstyle.css">
+  <link rel="shortcut icon" href="<%=media%>/favicon.ico">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+  <meta name="msapplication-TileImage" content="<%=media%>/images/favicon.png"/>
+  <link rel="icon" href="<%=media%>/images/favicon.png" sizes="144x144">
+  <link rel="apple-touch-icon-precomposed" href="<%=media%>/images/favicon.png" sizes="144x144">
+ </head>
+
+ <body class="lang_<%=luci.i18n.context.lang%> <%- if node then %><%= striptags( node.title ) %><%- end %>">
+
+<div class="lin">
+<form method="post" action="<%=pcdata(luci.http.getenv("REQUEST_URI"))%>">
+<div class="land_logo"></div>
+<div class="input">
+				<input class="text_value" name="luci_username" required="required" type="text" value="<%=duser%>" />
+				<input class="text_value" name="luci_password" required="required" type="password" placeholder="默认密码butongwifi" />
+</div>
+        <input type="submit" value="<%:Login%>" class="btn btn-primary btn-block btn-large" />
+
+
+<%- if fuser then %>
+        <div class="error"><%:Invalid username and/or password! Please try again.%></div>
+        <br />
+<% end -%>
+
+ 	</div>
+</form>
+
+<script type="text/javascript">//<![CDATA[
+	var input = document.getElementsByName('luci_password')[0];
+	if (input)
+		input.focus();
+//]]></script>
+
+<%
+local uci  = require "luci.model.uci".cursor()
+local fs  = require "nixio.fs"
+local https_key = uci:get("uhttpd", "main", "key")
+local https_port = uci:get("uhttpd", "main", "listen_https")
+if type(https_port) == "table" then
+	https_port = https_port[1]
+end
+
+if https_port and fs.access(https_key) then
+	https_port = https_port:match("(%d+)$")
+%>
+
+<script type="text/javascript">//<![CDATA[
+	if (document.location.protocol != 'https:') {
+		var url = 'https://' + window.location.hostname + ':' + '<%=https_port%>' + window.location.pathname;
+		var img=new Image;
+		img.onload=function(){window.location = url};
+		img.src='https://' + window.location.hostname + ':' + '<%=https_port%>' + '<%=resource%>/cbi/up.gif?' + Math.random();;
+		setTimeout(function(){
+			img.src=''
+		}, 5000);
+	}
+//]]></script>
+
+<% end %>
+
+
