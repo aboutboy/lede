@@ -131,8 +131,6 @@ jobs:
           CONFIG_GNUTLS_HEARTBEAT=y
           CONFIG_GNUTLS_OCSP=y
           CONFIG_GNUTLS_PSK=y
-          CONFIG_KERNEL_BUILD_DOMAIN="GitHub Actions"
-          CONFIG_KERNEL_BUILD_USER="P3TERX"
           CONFIG_LIBCURL_COOKIES=y
           CONFIG_LIBCURL_FILE=y
           CONFIG_LIBCURL_FTP=y
@@ -140,7 +138,6 @@ jobs:
           CONFIG_LIBCURL_NO_SMB="!"
           CONFIG_LIBCURL_OPENSSL=y
           CONFIG_LIBCURL_PROXY=y
-          CONFIG_LIBSODIUM_MINIMAL=y
           CONFIG_PACKAGE_ATH_DFS=y
           CONFIG_PACKAGE_MAC80211_DEBUGFS=y
           CONFIG_PACKAGE_MAC80211_MESH=y
@@ -155,7 +152,6 @@ jobs:
           CONFIG_PACKAGE_badblocks=y
           CONFIG_PACKAGE_bash=y
           CONFIG_PACKAGE_blkid=y
-          CONFIG_PACKAGE_ca-bundle=y
           CONFIG_PACKAGE_cgi-io=y
           CONFIG_PACKAGE_confuse=y
           CONFIG_PACKAGE_dbus=y
@@ -242,7 +238,6 @@ jobs:
           CONFIG_PACKAGE_libprotobuf-c=y
           CONFIG_PACKAGE_libreadline=y
           CONFIG_PACKAGE_libsmartcols=y
-          CONFIG_PACKAGE_libsodium=y
           CONFIG_PACKAGE_libsqlite3=y
           CONFIG_PACKAGE_libss=y
           CONFIG_PACKAGE_libtasn1=m
@@ -262,6 +257,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-music-remote-center=y
           CONFIG_PACKAGE_luci-app-samba=y
           CONFIG_PACKAGE_luci-app-samba4=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_Plugin=y
           CONFIG_PACKAGE_luci-i18n-control-weburl-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-guest-wifi-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-hd-idle-zh-cn=y
@@ -283,6 +279,7 @@ jobs:
           CONFIG_PACKAGE_tc=y
           CONFIG_PACKAGE_terminfo=y
           CONFIG_PACKAGE_uclibcxx=y
+          CONFIG_PACKAGE_v2ray-plugin=y
           CONFIG_PACKAGE_wireless-regdb=y
           CONFIG_PACKAGE_wsdd2=y
           CONFIG_SAMBA4_SERVER_AVAHI=y
