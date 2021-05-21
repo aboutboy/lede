@@ -131,6 +131,8 @@ jobs:
           CONFIG_GNUTLS_HEARTBEAT=y
           CONFIG_GNUTLS_OCSP=y
           CONFIG_GNUTLS_PSK=y
+          CONFIG_KERNEL_BUILD_DOMAIN="GitHub Actions"
+          CONFIG_KERNEL_BUILD_USER="P3TERX"
           CONFIG_LIBCURL_COOKIES=y
           CONFIG_LIBCURL_FILE=y
           CONFIG_LIBCURL_FTP=y
@@ -246,18 +248,18 @@ jobs:
           CONFIG_PACKAGE_luci-app-control-webrestriction=y
           CONFIG_PACKAGE_luci-app-control-weburl=y
           CONFIG_PACKAGE_luci-app-cowb-speedlimit=y
-          CONFIG_PACKAGE_luci-app-cowbbonding=y
-          CONFIG_PACKAGE_luci-app-cowbping=y
           CONFIG_PACKAGE_luci-app-diskman=y
           CONFIG_PACKAGE_luci-app-guest-wifi=y
           CONFIG_PACKAGE_luci-app-hd-idle=y
-          CONFIG_PACKAGE_luci-app-music-remote-center=y
           CONFIG_PACKAGE_luci-app-samba4=y
+          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Client is not set
+          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Client is not set
+          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server is not set
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_Plugin=y
+          # CONFIG_PACKAGE_luci-app-unblockmusic is not set
           CONFIG_PACKAGE_luci-i18n-control-weburl-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-guest-wifi-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-hd-idle-zh-cn=y
-          CONFIG_PACKAGE_luci-i18n-music-remote-center-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-samba4-zh-cn=y
           CONFIG_PACKAGE_luci-proto-ipv6=y
           CONFIG_PACKAGE_mxml=y
@@ -286,6 +288,17 @@ jobs:
           CONFIG_SQLITE3_JSON1=y
           CONFIG_SQLITE3_LIBEDIT=y
           CONFIG_SQLITE3_RTREE=y
+          # CONFIG_UnblockNeteaseMusic_Go is not set
+          # CONFIG_LIBMBEDTLS_DEBUG_C is not set
+          # CONFIG_LIBMBEDTLS_HKDF_C is not set
+          CONFIG_PACKAGE_UnblockNeteaseMusicGo=y
+          CONFIG_PACKAGE_libcares=y
+          CONFIG_PACKAGE_libmbedtls=y
+          CONFIG_PACKAGE_shadowsocks-libev-ss-local=y
+          CONFIG_PACKAGE_shadowsocks-libev-ss-redir=y
+          CONFIG_PACKAGE_shadowsocks-libev-ss-server=y
+          CONFIG_PACKAGE_shadowsocksr-libev-ssr-local=y
+          CONFIG_PACKAGE_shadowsocksr-libev-ssr-redir=y
           EOF
           # 
           # ========================固件定制部分结束========================
