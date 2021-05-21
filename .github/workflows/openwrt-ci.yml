@@ -334,5 +334,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@master
         with:
-          name: butongwifi-kirkwood-${{ GITHUB_RUN_NUMBER }}
+          name: butongwifi-kirkwood-$GITHUB_RUN_NUMBER
           path: ./artifact/
