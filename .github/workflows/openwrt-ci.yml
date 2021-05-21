@@ -57,6 +57,28 @@ jobs:
           sed -i 's/OpenWrt/BUTONGWIFI/g' package/base-files/files/bin/config_generate
           # Modify the version number
           sed -i "s/OpenWrt /BUTONGWIFI build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/lean/default-settings/files/zzz-default-settings
+          # Modify ROM info
+          sed -i 's/VERSION_DIST:=$(if $(VERSION_DIST),$(VERSION_DIST),OpenWrt)/VERSION_DIST:=$(if $(VERSION_DIST),$(VERSION_DIST),LCE)/g' include/version.mk
+          sed -i 's/VERSION_MANUFACTURER:=$(if $(VERSION_MANUFACTURER),$(VERSION_MANUFACTURER),OpenWrt)/VERSION_MANUFACTURER:=$(if $(VERSION_MANUFACTURER),$(VERSION_MANUFACTURER),LCE)/g' include/version.mk
+          # Modify banner
+          rm -f package/base-files/files/etc/banner
+          touch package/base-files/files/etc/banner
+          cat >> package/base-files/files/etc/banner <<EOF
+          |                                                                      |
+          | █               ▄                                  ▀      ▄▀▀    ▀   |
+          | █▄▄▄   ▄   ▄  ▄▄█▄▄   ▄▄▄   ▄ ▄▄    ▄▄▄▄ ▄     ▄ ▄▄▄    ▄▄█▄▄  ▄▄▄   |
+          | █▀ ▀█  █   █    █    █▀ ▀█  █▀  █  █▀ ▀█ ▀▄ ▄ ▄▀   █      █      █   |
+          | █   █  █   █    █    █   █  █   █  █   █  █▄█▄█    █      █      █   |
+          | ██▄█▀  ▀▄▄▀█    ▀▄▄  ▀█▄█▀  █   █  ▀█▄▀█   █ █   ▄▄█▄▄    █    ▄▄█▄▄ |
+          |                                     ▄  █                             |
+          |                                      ▀▀                              |
+          |               处处都有共享WIFI，人人都是WIFI运营商                   |
+           email: a@lce.cc (%D %V, %C, %R)
+          EOF
+          # Modify root password
+          sed -i '1c\root:$1$kGltZCp9$Z30nplSDeCToui/Cfgj2t0:0:0:99999:7:::' package/base-files/files/etc/shadow
+          # Modify profile
+          sed -i '14c\export PS1=\'[\[\e[31;1m\]\u\[\e[m\]@\[\e[36;1m\]\h \[\e[35;1m\]\w\[\e[m\]]\$ \'' package/base-files/files/etc/profile
           # Modify default theme
           sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
