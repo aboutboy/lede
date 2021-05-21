@@ -260,7 +260,6 @@ jobs:
           CONFIG_PACKAGE_luci-i18n-music-remote-center-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-samba4-zh-cn=y
           CONFIG_PACKAGE_luci-proto-ipv6=y
-          CONFIG_PACKAGE_luci-theme-butongwifi=y
           CONFIG_PACKAGE_mxml=y
           CONFIG_PACKAGE_parted=y
           CONFIG_PACKAGE_rpcd-mod-file=y
