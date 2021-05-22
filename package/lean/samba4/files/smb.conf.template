@@ -1,11 +1,17 @@
 [global]
+	## 网络共享名称
 	netbios name = |NAME| 
+	## 绑定到的网络接口
 	interfaces = |INTERFACES|
+	## 服务描述信息
 	server string = |DESCRIPTION|
+	## 编码格式
 	unix charset = |CHARSET|
+	## 工作域
 	workgroup = |WORKGROUP|
 
 	## This global parameter allows the Samba admin to limit what interfaces on a machine will serve SMB requests.
+	## 使用interfaces时，设置此项为yes,使Samba只对指定的端口服务。
 	bind interfaces only = yes
 
 	## time for inactive connections to-be closed in minutes
