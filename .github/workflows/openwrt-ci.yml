@@ -131,6 +131,8 @@ jobs:
           CONFIG_GNUTLS_HEARTBEAT=y
           CONFIG_GNUTLS_OCSP=y
           CONFIG_GNUTLS_PSK=y
+          CONFIG_KERNEL_BUILD_DOMAIN="GitHub Actions"
+          CONFIG_KERNEL_BUILD_USER="P3TERX"
           CONFIG_LIBCURL_COOKIES=y
           CONFIG_LIBCURL_FILE=y
           CONFIG_LIBCURL_FTP=y
@@ -172,6 +174,7 @@ jobs:
           CONFIG_PACKAGE_kmod-ath9k=y
           CONFIG_PACKAGE_kmod-ath9k-common=y
           CONFIG_PACKAGE_kmod-cfg80211=y
+          CONFIG_PACKAGE_kmod-fs-exfat=y
           CONFIG_PACKAGE_kmod-fs-msdos=y
           CONFIG_PACKAGE_kmod-fs-ntfs=y
           CONFIG_PACKAGE_kmod-fs-reiserfs=y
@@ -295,6 +298,7 @@ jobs:
           CONFIG_PACKAGE_terminfo=y
           # CONFIG_PACKAGE_trojan is not set
           CONFIG_PACKAGE_uclibcxx=y
+          CONFIG_PACKAGE_vim=y
           CONFIG_PACKAGE_wifischedule=y
           CONFIG_PACKAGE_wireless-regdb=y
           CONFIG_PACKAGE_wsdd2=y
