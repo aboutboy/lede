@@ -51,6 +51,10 @@
 
 	## Set location of smbpasswd ('smbd -b' will show default compiled location)
 	#smb passwd file = /etc/samba/smbpasswd 
+	
+	## 向下兼容
+	server min protocol = NT1
+	client min protocol = NT1
 
 	## LAN/WAN options (IPTOS_LOWDELAY TCP_NODELAY) WAN (IPTOS_THROUGHPUT)
 	socket options = IPTOS_LOWDELAY TCP_NODELAY
