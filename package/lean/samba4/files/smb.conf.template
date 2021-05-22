@@ -15,12 +15,18 @@
 	bind interfaces only = yes
 
 	## time for inactive connections to-be closed in minutes
+	## deadtime用来设置断掉一个没有打开任何文件的连接的时间。单位是分钟，0代表Samba Server不自动切断任何连接。
 	deadtime = 15
 
 	## disable core dumps
 	enable core files = no
 
 	## set security (auto, user, domain, ads)
+	## 说明：设置用户访问Samba Server的验证方式，一共有四种验证方式。
+	## 1. share：用户访问Samba Server不需要提供用户名和口令, 安全性能较低。
+	## 2. user：Samba Server共享目录只能被授权的用户访问,由Samba Server负责检查账号和密码的正确性。账号和密码要在本Samba Server中建立。
+	## 3. server：依靠其他Windows NT/2000或Samba Server来验证用户的账号和密码,是一种代理验证。此种安全模式下,系统管理员可以把所有的Windows用户和口令集中到一个NT系统上,使用 Windows NT进行Samba认证, 远程服务器可以自动认证全部用户和口令,如果认证失败,Samba将使用用户级安全模式作为替代的方式。
+	## 4. domain：域安全级别,使用主域控制器(PDC)来完成认证。
 	security = user
 
 	## This parameter controls whether a remote client is allowed or required to use SMB encryption.
@@ -95,6 +101,7 @@
 	#disable netbios = Yes
 
 	## Setting this value to no will cause nmbd never to become a local master browser.
+	## local master用来指定Samba Server是否试图成为本地网域主浏览器。如果设为no，则永远不会成为本地网域主浏览器。但是即使设置为yes，也不等于该Samba Server就能成为主浏览器，还需要参加选举。
 	#local master = no
 
 	## (auto, yes) If this is set to yes, on startup, nmbd will force an election, and it will have a slight advantage in winning the election. It is recommended that this parameter is used in conjunction with domain master = yes, so that nmbd can guarantee becoming a domain master. 
@@ -125,3 +132,42 @@
 	#force user = root
 	#inherit owner = windows and unix
 ################################################################
+
+[共享名]
+
+	## comment = 任意字符串
+	## 说明：comment是对该共享的描述，可以是任意字符串。
+
+	## path = 共享目录路径
+	## 说 明：path用来指定共享目录的路径。可以用%u、%m这样的宏来代替路径里的unix用户和客户机的Netbios名，用宏表示主要用于[homes] 共享域。例如：如果我们不打算用home段做为客户的共享，而是在/home/share/下为每个Linux用户以他的用户名建个目录，作为他的共享目 录，这样path就可以写成：path = /home/share/%u; 。用户在连接到这共享时具体的路径会被他的用户名代替，要注意这个用户名路径一定要存在，否则，客户机在访问时会找不到网络路径。同样，如果我们不是以用 户来划分目录，而是以客户机来划分目录，为网络上每台可以访问samba的机器都各自建个以它的netbios名的路径，作为不同机器的共享资源，就可以 这样写：path = /home/share/%m 。
+
+	## browseable = yes/no
+	## 说明：browseable用来指定该共享是否可以浏览。
+
+	## writable = yes/no
+	## 说明：writable用来指定该共享路径是否可写。
+
+	## available = yes/no
+	## 说明：available用来指定该共享资源是否可用。
+ 
+	## admin users = 该共享的管理者
+	## 说明：admin users用来指定该共享的管理员（对该共享具有完全控制权限）。在samba 3.0中，如果用户验证方式设置成“security=share”时，此项无效。
+	## 例如：admin users =david，sandy（多个用户中间用逗号隔开）。
+
+	## valid users = 允许访问该共享的用户
+	## 说明：valid users用来指定允许访问该共享资源的用户。
+	## 例如：valid users = david，@dave，@tech（多个用户或者组中间用逗号隔开，如果要加入一个组就用“@组名”表示。）
+
+	## invalid users = 禁止访问该共享的用户
+	## 说明：invalid users用来指定不允许访问该共享资源的用户。
+	## 例如：invalid users = root，@bob（多个用户或者组中间用逗号隔开。）
+
+	## write list = 允许写入该共享的用户
+	## 说明：write list用来指定可以在该共享下写入文件的用户。
+	## 例如：write list = david，@dave
+
+	## public = yes/no
+	## 说明：public用来指定该共享是否允许guest账户访问。
+
+	## guest ok = yes/no
+	## 说明：意义同“public”。
