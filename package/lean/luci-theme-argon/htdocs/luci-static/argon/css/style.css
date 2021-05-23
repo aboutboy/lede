@@ -78,6 +78,9 @@
 .icon-vpn:before {
   content: "\e90b";
 }
+.icon-control:before {
+  content: "\e90b";
+}
 .icon-storage:before {
   content: "\e90c";
 }
@@ -508,6 +511,9 @@ header > .container > .brand {
 	content: "\e90c";
 }
 .main > .main-left > .nav > .slide > .menu[data-title= VPN ]:before{
+	content: "\e90b";
+}
+.main > .main-left > .nav > .slide > .menu[data-title= 管控 ]:before{
 	content: "\e90b";
 }
 .main > .main-left > .nav > .slide > .menu[data-title= 网络 ]:before{

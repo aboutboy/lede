@@ -11,7 +11,7 @@
 . /lib/functions/service.sh
 
 global=0
-config_file="/etc/config/samba"
+config_file="/etc/config/samba4"
 
 wait_for_init() {
 	for i in `seq 30`
