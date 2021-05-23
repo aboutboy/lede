@@ -131,6 +131,8 @@ jobs:
           CONFIG_GNUTLS_HEARTBEAT=y
           CONFIG_GNUTLS_OCSP=y
           CONFIG_GNUTLS_PSK=y
+          CONFIG_KERNEL_BUILD_DOMAIN="GitHub Actions"
+          CONFIG_KERNEL_BUILD_USER="P3TERX"
           CONFIG_LIBCURL_COOKIES=y
           CONFIG_LIBCURL_FILE=y
           CONFIG_LIBCURL_FTP=y
@@ -141,6 +143,7 @@ jobs:
           CONFIG_PACKAGE_ATH_DFS=y
           CONFIG_PACKAGE_MAC80211_DEBUGFS=y
           CONFIG_PACKAGE_MAC80211_MESH=y
+          CONFIG_PACKAGE_adbyby=y
           CONFIG_PACKAGE_alsa-lib=y
           CONFIG_PACKAGE_alsa-utils=y
           CONFIG_PACKAGE_attr=y
@@ -188,6 +191,7 @@ jobs:
           CONFIG_PACKAGE_kmod-sched=y
           CONFIG_PACKAGE_kmod-sched-core=y
           CONFIG_PACKAGE_kmod-sound-core=y
+          CONFIG_PACKAGE_kmod-usb-audio=y
           CONFIG_PACKAGE_kmod-usb-dwc2=y
           CONFIG_PACKAGE_kmod-usb-net=y
           CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
@@ -211,19 +215,24 @@ jobs:
           CONFIG_PACKAGE_libdbus=y
           CONFIG_PACKAGE_libedit=y
           CONFIG_PACKAGE_libevent2=y
+          CONFIG_PACKAGE_libexif=y
           CONFIG_PACKAGE_libexpat=y
           CONFIG_PACKAGE_libext2fs=y
           CONFIG_PACKAGE_libfdisk=y
           CONFIG_PACKAGE_libffmpeg-full=y
+          CONFIG_PACKAGE_libflac=y
           CONFIG_PACKAGE_libgcrypt=y
           CONFIG_PACKAGE_libgdbm=y
           CONFIG_PACKAGE_libgmp=y
           CONFIG_PACKAGE_libgnutls=y
           CONFIG_PACKAGE_libgpg-error=y
+          CONFIG_PACKAGE_libid3tag=y
+          CONFIG_PACKAGE_libjpeg-turbo=y
           # CONFIG_PACKAGE_libmbedtls is not set
           CONFIG_PACKAGE_libmount=y
           CONFIG_PACKAGE_libncurses=y
           CONFIG_PACKAGE_libnettle=y
+          CONFIG_PACKAGE_libogg=y
           CONFIG_PACKAGE_libopus=y
           CONFIG_PACKAGE_libpam=y
           CONFIG_PACKAGE_libplist=y
@@ -238,9 +247,11 @@ jobs:
           CONFIG_PACKAGE_libtirpc=y
           CONFIG_PACKAGE_libunistring=y
           CONFIG_PACKAGE_libuv=y
+          CONFIG_PACKAGE_libvorbis=y
           CONFIG_PACKAGE_libwebsockets-full=y
           CONFIG_PACKAGE_libxml2=y
           CONFIG_PACKAGE_lsblk=y
+          CONFIG_PACKAGE_luci-app-adbyby-plus=y
           CONFIG_PACKAGE_luci-app-baidupcs-web=y
           CONFIG_PACKAGE_luci-app-control-webrestriction=y
           CONFIG_PACKAGE_luci-app-control-weburl=y
@@ -249,6 +260,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-diskman_INCLUDE_lsblk=y
           CONFIG_PACKAGE_luci-app-guest-wifi=y
           CONFIG_PACKAGE_luci-app-hd-idle=y
+          CONFIG_PACKAGE_luci-app-minidlna=y
           CONFIG_PACKAGE_luci-app-music-remote-center=y
           # CONFIG_PACKAGE_luci-app-rclone_INCLUDE_fuse-utils is not set
           # CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-ng is not set
@@ -262,13 +274,15 @@ jobs:
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_Plugin=y
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray is not set
           CONFIG_PACKAGE_luci-app-wifischedule=y
+          CONFIG_PACKAGE_luci-i18n-adbyby-plus-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-control-weburl-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-guest-wifi-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-hd-idle-zh-cn=y
+          CONFIG_PACKAGE_luci-i18n-minidlna-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-music-remote-center-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-samba4-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-wifischedule-zh-cn=y
-          CONFIG_PACKAGE_luci-theme-butongwifi=y
+          CONFIG_PACKAGE_minidlna=y
           CONFIG_PACKAGE_mxml=y
           CONFIG_PACKAGE_parted=y
           CONFIG_PACKAGE_rsync=y
