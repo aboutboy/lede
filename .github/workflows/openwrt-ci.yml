@@ -131,8 +131,6 @@ jobs:
           CONFIG_GNUTLS_HEARTBEAT=y
           CONFIG_GNUTLS_OCSP=y
           CONFIG_GNUTLS_PSK=y
-          CONFIG_KERNEL_BUILD_DOMAIN="GitHub Actions"
-          CONFIG_KERNEL_BUILD_USER="P3TERX"
           CONFIG_LIBCURL_COOKIES=y
           CONFIG_LIBCURL_FILE=y
           CONFIG_LIBCURL_FTP=y
@@ -148,13 +146,12 @@ jobs:
           CONFIG_PACKAGE_attr=y
           CONFIG_PACKAGE_avahi-dbus-daemon=y
           CONFIG_PACKAGE_badblocks=y
+          CONFIG_PACKAGE_baidupcs-web=y
           CONFIG_PACKAGE_bash=y
           CONFIG_PACKAGE_blkid=y
           # CONFIG_PACKAGE_boost is not set
           CONFIG_PACKAGE_confuse=y
-          # CONFIG_PACKAGE_coreutils is not set
           CONFIG_PACKAGE_dbus=y
-          # CONFIG_PACKAGE_dns2socks is not set
           CONFIG_PACKAGE_e2fsprogs=y
           CONFIG_PACKAGE_fdisk=y
           CONFIG_PACKAGE_fdk-aac=y
@@ -165,7 +162,6 @@ jobs:
           CONFIG_PACKAGE_htop=y
           # CONFIG_PACKAGE_ipt2socks is not set
           CONFIG_PACKAGE_iptables-mod-filter=y
-          # CONFIG_PACKAGE_iptables-mod-tproxy is not set
           CONFIG_PACKAGE_iw=y
           CONFIG_PACKAGE_iwinfo=y
           CONFIG_PACKAGE_kmod-ata-ahci=y
@@ -181,14 +177,10 @@ jobs:
           CONFIG_PACKAGE_kmod-fs-vfat=y
           CONFIG_PACKAGE_kmod-ifb=y
           CONFIG_PACKAGE_kmod-input-core=y
-          # CONFIG_PACKAGE_kmod-ip6tables is not set
           CONFIG_PACKAGE_kmod-ipt-filter=y
-          # CONFIG_PACKAGE_kmod-ipt-tproxy is not set
           CONFIG_PACKAGE_kmod-lib-crc32c=y
           CONFIG_PACKAGE_kmod-mac80211=y
           CONFIG_PACKAGE_kmod-mii=y
-          # CONFIG_PACKAGE_kmod-nf-ipt6 is not set
-          # CONFIG_PACKAGE_kmod-nf-reject6 is not set
           CONFIG_PACKAGE_kmod-nls-cp437=y
           CONFIG_PACKAGE_kmod-nls-cp936=y
           CONFIG_PACKAGE_kmod-nls-iso8859-1=y
@@ -218,7 +210,6 @@ jobs:
           CONFIG_PACKAGE_libdaemon=y
           CONFIG_PACKAGE_libdbus=y
           CONFIG_PACKAGE_libedit=y
-          # CONFIG_PACKAGE_libev is not set
           CONFIG_PACKAGE_libevent2=y
           CONFIG_PACKAGE_libexpat=y
           CONFIG_PACKAGE_libext2fs=y
@@ -230,6 +221,7 @@ jobs:
           CONFIG_PACKAGE_libgnutls=y
           CONFIG_PACKAGE_libgpg-error=y
           # CONFIG_PACKAGE_libmbedtls is not set
+          CONFIG_PACKAGE_libmount=y
           CONFIG_PACKAGE_libncurses=y
           CONFIG_PACKAGE_libnettle=y
           CONFIG_PACKAGE_libopus=y
@@ -244,15 +236,17 @@ jobs:
           # CONFIG_PACKAGE_libstdcpp is not set
           CONFIG_PACKAGE_libtasn1=y
           CONFIG_PACKAGE_libtirpc=y
-          # CONFIG_PACKAGE_libudns is not set
           CONFIG_PACKAGE_libunistring=y
           CONFIG_PACKAGE_libuv=y
           CONFIG_PACKAGE_libwebsockets-full=y
           CONFIG_PACKAGE_libxml2=y
+          CONFIG_PACKAGE_lsblk=y
+          CONFIG_PACKAGE_luci-app-baidupcs-web=y
           CONFIG_PACKAGE_luci-app-control-webrestriction=y
           CONFIG_PACKAGE_luci-app-control-weburl=y
           CONFIG_PACKAGE_luci-app-cowb-speedlimit=y
           CONFIG_PACKAGE_luci-app-diskman=y
+          CONFIG_PACKAGE_luci-app-diskman_INCLUDE_lsblk=y
           CONFIG_PACKAGE_luci-app-guest-wifi=y
           CONFIG_PACKAGE_luci-app-hd-idle=y
           CONFIG_PACKAGE_luci-app-music-remote-center=y
@@ -260,12 +254,12 @@ jobs:
           # CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-ng is not set
           # CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-webui is not set
           CONFIG_PACKAGE_luci-app-samba4=y
-          # CONFIG_PACKAGE_luci-app-ssr-plus is not set
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Client is not set
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Client is not set
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server is not set
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_Obfs is not set
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan is not set
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_Plugin=y
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray is not set
           CONFIG_PACKAGE_luci-app-wifischedule=y
           CONFIG_PACKAGE_luci-i18n-control-weburl-zh-cn=y
@@ -274,10 +268,9 @@ jobs:
           CONFIG_PACKAGE_luci-i18n-music-remote-center-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-samba4-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-wifischedule-zh-cn=y
-          # CONFIG_PACKAGE_microsocks is not set
+          CONFIG_PACKAGE_luci-theme-butongwifi=y
           CONFIG_PACKAGE_mxml=y
           CONFIG_PACKAGE_parted=y
-          # CONFIG_PACKAGE_resolveip is not set
           CONFIG_PACKAGE_rsync=y
           CONFIG_PACKAGE_rsyncd=y
           CONFIG_PACKAGE_samba4-admin=y
@@ -286,7 +279,6 @@ jobs:
           # CONFIG_PACKAGE_shadowsocks-libev-ss-local is not set
           # CONFIG_PACKAGE_shadowsocks-libev-ss-redir is not set
           # CONFIG_PACKAGE_shadowsocks-libev-ss-server is not set
-          # CONFIG_PACKAGE_shadowsocksr-libev-ssr-check is not set
           # CONFIG_PACKAGE_shadowsocksr-libev-ssr-local is not set
           # CONFIG_PACKAGE_shadowsocksr-libev-ssr-redir is not set
           CONFIG_PACKAGE_shine=y
@@ -294,11 +286,11 @@ jobs:
           CONFIG_PACKAGE_smartmontools=y
           CONFIG_PACKAGE_sqlite3-cli=y
           CONFIG_PACKAGE_tc=y
-          # CONFIG_PACKAGE_tcping is not set
           CONFIG_PACKAGE_terminfo=y
           # CONFIG_PACKAGE_trojan is not set
           CONFIG_PACKAGE_uclibcxx=y
-          CONFIG_PACKAGE_vim=y
+          CONFIG_PACKAGE_v2ray-plugin=y
+          CONFIG_PACKAGE_vim-full=y
           CONFIG_PACKAGE_wifischedule=y
           CONFIG_PACKAGE_wireless-regdb=y
           CONFIG_PACKAGE_wsdd2=y
