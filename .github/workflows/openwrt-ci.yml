@@ -367,19 +367,13 @@ jobs:
           cp -rf $(find ./bin/packages/ -type f -name "*.ipk") ./artifact/package/
           cp -rf $(find ./bin/targets/ -type f -name "*.buildinfo" -o -name "*.manifest") ./artifact/buildinfo/
           echo "::set-output name=status::success"
-  
-      - name: Upload artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: butongwifi-kirkwood-${{ github.run_number }}
-          path: ./artifact/firmware/
 
       - name: Upload firmware to cowtransfer
         id: cowtransfer
         if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
         run: |
           curl -fsSL git.io/file-transfer | sh
-          ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
+          ./transfer cow --block 2621440 -s -p 64 --no-progress ./bin/targets/ 2>&1 | tee cowtransfer.log
           echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
           echo "::set-output name=url::$(cat cowtransfer.log | grep https | cut -f3 -d" ")"
 
@@ -389,7 +383,7 @@ jobs:
         run: |
           echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
           touch release.txt
-          [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
+          [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer Download Link](${{ steps.cowtransfer.outputs.url }})" >> release.txt
           echo "::set-output name=status::success"
           r=$(cat release.txt)
           echo "::set-output name=release::$r"
@@ -401,6 +395,24 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           body: |
             ${{ steps.tag.outputs.release }}
-          file: ./artifact/*
+          file: ./artifact/firmware/*
           tag: ${{ github.ref }}
           file_glob: true
+
+      - name: Deliver buildinfo
+        uses: actions/upload-artifact@master
+        with:
+          name: butongwifi-kirkwood-buildinfo-${{ github.run_number }}
+          path: ./artifact/buildinfo/
+
+      - name: Deliver package
+        uses: actions/upload-artifact@master
+        with:
+          name: butongwifi-kirkwood-package-${{ github.run_number }}
+          path: ./artifact/package/
+  
+      - name: Upload firmware
+        uses: actions/upload-artifact@master
+        with:
+          name: butongwifi-kirkwood-firmware-${{ github.run_number }}
+          path: ./artifact/firmware/
