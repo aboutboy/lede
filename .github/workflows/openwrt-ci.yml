@@ -354,11 +354,20 @@ jobs:
         run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
-          find ./bin/targets/ -name "*uImage*" | xargs -i mv -f {} ./artifact/
-          find ./bin/targets/ -name "*factory.bin*" | xargs -i mv -f {} ./artifact/
+          find ./bin/targets/ -name "*uImage*" | xargs -i cp -f {} ./artifact/
+          find ./bin/targets/ -name "*factory.bin*" | xargs -i cp -f {} ./artifact/
   
       - name: Upload artifact
         uses: actions/upload-artifact@master
         with:
           name: butongwifi-kirkwood-${{ github.run_number }}
           path: ./artifact/
+
+      - name: Upload release asset
+        if: github.event == 'release'
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.YOURTOKEN }}
+          file: ./artifact/*
+          tag: ${{ github.ref }}
+          file_glob: true
