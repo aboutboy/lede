@@ -55,12 +55,12 @@ jobs:
 
       - name: Update feeds
         run: |
-          # rm -rf ./package/lean/luci-theme-argon
+          rm -rf ./package/lean/luci-theme-argon
           git clone $PING_PONG -b main ./package/ping-pong
-          # git clone $ARGON -b master ./package/luci-theme-argon
+          git clone $ARGON -b master ./package/luci-theme-argon
           sed -i 'N;64 i \\tcp /usr/bin/upx $(STAGING_DIR_HOST)/bin/' package/ping-pong/v2ray-plugin/Makefile
           sed -i 'N;65 i \\tcp /usr/bin/upx-ucl $(STAGING_DIR_HOST)/bin/' package/ping-pong/v2ray-plugin/Makefile
-          # sed -i '2c\src-git luci https://git.openwrt.org/project/luci.git' feeds.conf.default
+          sed -i '2c\src-git luci https://git.openwrt.org/project/luci.git' feeds.conf.default
           # sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
