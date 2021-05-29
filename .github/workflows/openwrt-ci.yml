@@ -410,7 +410,7 @@ jobs:
           body: |
             ${{ steps.tag.outputs.release }}
           file: ./artifact/firmware/*
-          tag: ${{ github.ref }}
+          tag: ${{ github.ref }}-${{ github.run_number }}-${{ steps.tag.outputs.release_tag }}
           file_glob: true
 
       - name: Deliver buildinfo
