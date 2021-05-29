@@ -1,6 +1,0 @@
-config cowbping 'cowbping'
-	option enabled '0'
-	option time '60'
-	option delaytime '60'
-	option sum '1'
-
