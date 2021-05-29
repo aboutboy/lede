@@ -285,7 +285,7 @@ jobs:
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server is not set
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_Obfs is not set
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan is not set
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_Plugin=y
+          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_Plugin=y
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray is not set
           CONFIG_PACKAGE_luci-app-wifischedule=y
           CONFIG_PACKAGE_luci-i18n-adbyby-plus-zh-cn=y
@@ -317,7 +317,7 @@ jobs:
           CONFIG_PACKAGE_terminfo=y
           # CONFIG_PACKAGE_trojan is not set
           CONFIG_PACKAGE_uclibcxx=y
-          CONFIG_PACKAGE_v2ray-plugin=y
+          # CONFIG_PACKAGE_v2ray-plugin=y
           CONFIG_PACKAGE_vim-full=y
           CONFIG_PACKAGE_wifischedule=y
           CONFIG_PACKAGE_wireless-regdb=y
@@ -352,6 +352,11 @@ jobs:
       - name: SSH connection to Actions
         uses: P3TERX/ssh2actions@main
         if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+        # Send connection info to Telegram (optional)
+        # You can find related documents here: https://core.telegram.org/bots
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         
       - name: Make download
         run: |
