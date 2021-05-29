@@ -10,6 +10,8 @@
 name: OpenWrt-CI
 
 env:
+  PING_PONG: https://github.com/xiaorouji/openwrt-passwall.git
+  ARGON: https://github.com/jerrykuku/luci-theme-argon.git
   UPLOAD_COWTRANSFER: true
   UPLOAD_RELEASE: true
 
@@ -37,6 +39,7 @@ jobs:
         uses: actions/checkout@master
         with:
           ref: master
+
       - name: Initialization environment
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -49,9 +52,15 @@ jobs:
           sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
+
       - name: Update feeds
         run: |
-          sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
+          rm -rf ./package/lean/luci-theme-argon
+          git clone $PING_PONG -b main ./package/ping-pong
+          git clone $ARGON -b master ./package/luci-theme-argon
+          sed -i 'N;64 i \\tcp /usr/bin/upx $(STAGING_DIR_HOST)/bin/' package/ping-pong/v2ray-plugin/Makefile
+          sed -i 'N;65 i \\tcp /usr/bin/upx-ucl $(STAGING_DIR_HOST)/bin/' package/ping-pong/v2ray-plugin/Makefile
+          #sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
